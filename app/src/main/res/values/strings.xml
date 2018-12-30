@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Merch Manager</string>
+    <string name="activity_event_creator">Event Creator</string>
+    <string name="hint_enter_name">Enter a name</string>
+    <string name="button_create">Create</string>
+    <string name="action_settings">Settings</string>
+    <string name="EVENT_LIST">EVENT_LIST</string>
+</resources>
