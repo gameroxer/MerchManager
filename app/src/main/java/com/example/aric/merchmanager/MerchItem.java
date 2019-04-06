@@ -1,6 +1,8 @@
 package com.example.aric.merchmanager;
 
-public class MerchItem {
+import java.io.Serializable;
+
+public class MerchItem  implements Serializable {
     public String name;
     public float price;
 }

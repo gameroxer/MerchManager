@@ -1,9 +1,10 @@
 package com.example.aric.merchmanager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MerchStockManager {
+public class MerchStockManager implements Serializable {
     private HashMap<String, Integer> stockDictionary;
     private ArrayList<MerchSet> setDiscounts;
 
