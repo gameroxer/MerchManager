@@ -29,4 +29,17 @@ public class MerchTransaction implements Serializable {
         priceOverride = true;
         totalPrice = price;
     }
+
+    public void AddItem(int id) {
+        MerchTransactionItem currItem = null;
+        for (MerchTransactionItem item : itemList) {
+            if (item.item.id == id) {
+                currItem = item;
+                break;
+            }
+        }
+        if (currItem == null) {
+            //grab item info from inventory
+        }
+    }
 }

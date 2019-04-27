@@ -30,6 +30,7 @@
         <activity
             android:name=".MerchSale"
             android:parentActivityName=".MainActivity"
+            android:launchMode="singleTop"
             >
         </activity>
         <activity
