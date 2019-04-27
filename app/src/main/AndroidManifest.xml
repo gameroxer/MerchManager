@@ -12,32 +12,37 @@
         <activity
             android:name=".EventSelector"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EventCreator"
             android:label="@string/activity_event_creator"
-            android:parentActivityName=".EventSelector">
-        </activity>
+            android:parentActivityName=".EventSelector" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MerchSale"
-            android:parentActivityName=".MainActivity"
             android:launchMode="singleTop"
-            >
-        </activity>
+            android:parentActivityName=".MainActivity"
+            android:label="@string/activity_merch_sale"/>
         <activity
             android:name=".Checkout"
             android:parentActivityName=".MerchSale"
-            >
-        </activity>
+            android:label="@string/activity_checkout"/>
+        <activity
+            android:name=".ManageInventory"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/activity_inventory_manager"/>
+        <activity
+            android:name=".CreateMerchItem"
+            android:parentActivityName=".ManageInventory"
+            android:label="@string/activity_merch_creator"/>
     </application>
 
 </manifest>

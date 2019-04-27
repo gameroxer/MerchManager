@@ -4,8 +4,12 @@
     <string name="activity_event_creator">Event Creator</string>
     <string name="activity_checkout">Checkout</string>
     <string name="activity_merch_sale">Merch Sale</string>
+    <string name="activity_inventory_manager">Inventory Manager</string>
+    <string name="activity_merch_creator">Merch Creator</string>
 
-    <string name="hint_enter_name">Enter a name</string>
+    <string name="hint_enter_name">Name</string>
+    <string name="hint_enter_set">Set (optional)</string>
+    <string name="hint_enter_price">Price</string>
 
     <string name="button_create">Create</string>
     <string name="button_sale">New Sale</string>
@@ -15,6 +19,7 @@
     <string name="button_checkout">Total: $%.2f\nCheckout</string>
     <string name="button_override">Override Price</string>
     <string name="button_make_sale">Make Sale!</string>
+    <string name="button_create_item">Create Item!</string>
 
     <string name="action_settings">Settings</string>
 

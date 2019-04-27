@@ -32,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void ManageInventoryButtonPressed(View v) {
+        Intent intent = new Intent(this, ManageInventory.class);
+        intent.putExtra("merchList", merchList);
+        startActivity(intent);
+    }
+
     void CreateSampleItems() {
         MerchItem item1 = new MerchItem();
         item1.id = 1;
