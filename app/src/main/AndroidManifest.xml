@@ -32,6 +32,11 @@
             android:parentActivityName=".MainActivity"
             >
         </activity>
+        <activity
+            android:name=".Checkout"
+            android:parentActivityName=".MerchSale"
+            >
+        </activity>
     </application>
 
 </manifest>
