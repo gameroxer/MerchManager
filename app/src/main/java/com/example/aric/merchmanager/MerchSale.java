@@ -9,24 +9,41 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MerchSale extends AppCompatActivity {
-    public static String SALE_SUCCESS = "SALE_SUCCESS";
     private MerchTransaction transaction;
+    private boolean checkedOut = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_merch_sale);
+
+        transaction = new MerchTransaction();
+        UpdatePrice();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (checkedOut) {
+            finish();
+        }
+    }
 
+    public void Checkout(View v) {
+        //start checkout activity
+        Intent checkoutIntent = new Intent(this, Checkout.class);
+        checkoutIntent.putExtra("transactionData", transaction);
 
-    public void MakeSale(View v) {
-        //add sale to data
+        startActivity(checkoutIntent);
+        checkedOut = true;
+    }
 
-        Intent resultIntent = new Intent();
-        setResult(Activity.RESULT_OK, resultIntent);
+    public void UpdatePrice() {
+        String total = getString(R.string.button_checkout, transaction.totalPrice);
+        ((Button)findViewById(R.id.checkoutButton)).setText(total);
+    }
 
-        finish();
-
+    public void PopulateWithItems() {
+        //used to create all the MerchItems
     }
 }

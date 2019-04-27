@@ -1,13 +1,22 @@
 <resources>
     <string name="app_name">Merch Manager</string>
+
     <string name="activity_event_creator">Event Creator</string>
+    <string name="activity_checkout">Checkout</string>
+    <string name="activity_merch_sale">Merch Sale</string>
+
     <string name="hint_enter_name">Enter a name</string>
+
     <string name="button_create">Create</string>
     <string name="button_sale">New Sale</string>
     <string name="button_manage_inventory">Manage Inventory</string>
     <string name="button_view_sales">View Sales</string>
     <string name="button_analytics">Analytics</string>
+    <string name="button_checkout">Total: $%.2f\nCheckout</string>
+    <string name="button_override">Override Price</string>
     <string name="button_make_sale">Make Sale!</string>
+
     <string name="action_settings">Settings</string>
+
     <string name="EVENT_LIST">EVENT_LIST</string>
 </resources>

@@ -7,31 +7,32 @@
     tools:context=".MerchSale">
 
     <Button
-        android:id="@+id/soldButton"
+        android:id="@+id/checkoutButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="MakeSale"
-        android:text="@string/button_make_sale"
+        android:layout_marginBottom="3dp"
+        android:onClick="Checkout"
+        android:text="@string/button_checkout"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="529dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/soldButton"
+        app:layout_constraintBottom_toTopOf="@+id/checkoutButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        android:focusable="true" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>
