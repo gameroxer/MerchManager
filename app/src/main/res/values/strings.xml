@@ -10,6 +10,7 @@
     <string name="hint_enter_name">Name</string>
     <string name="hint_enter_set">Set (optional)</string>
     <string name="hint_enter_price">Price</string>
+    <string name="hint_enter_quantity">Quantity in stock</string>
 
     <string name="button_create">Create</string>
     <string name="button_sale">New Sale</string>
