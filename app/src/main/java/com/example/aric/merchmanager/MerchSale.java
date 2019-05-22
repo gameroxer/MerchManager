@@ -14,13 +14,16 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MerchSale extends AppCompatActivity {
-    private MerchTransaction transaction;
+    public MerchTransaction transaction;
     private boolean checkedOut = false;
 
-    public ArrayList<MerchItem> merchList;
+    public MerchStockManager merchStockManager;
+
+    public Button checkoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +31,15 @@ public class MerchSale extends AppCompatActivity {
         setContentView(R.layout.activity_merch_sale);
 
         Intent intent = getIntent();
-        if (intent.hasExtra("merchList")) {
-            merchList = (ArrayList<MerchItem>)intent.getSerializableExtra("merchList");
-            Log.d("tag", merchList.get(1).name);
-//            for (MerchItem item : merchList) {
-//                Log.d("tag", item.name);
-//            }
+
+        if (intent.hasExtra("stockManager")) {
+            merchStockManager = (MerchStockManager)intent.getSerializableExtra("stockManager");
         }
 
-        transaction = new MerchTransaction();
+        transaction = new MerchTransaction(merchStockManager.merchDictionary.values().toArray());
+
+        checkoutButton = findViewById(R.id.checkoutButton);
+
         UpdatePrice();
         PopulateWithItems();
     }
@@ -62,21 +65,30 @@ public class MerchSale extends AppCompatActivity {
         //start checkout activity
         Intent checkoutIntent = new Intent(this, Checkout.class);
         checkoutIntent.putExtra("transactionData", transaction);
+        checkoutIntent.putExtra("stockManager", merchStockManager);
 
         startActivityForResult(checkoutIntent, 1);
     }
 
     public void UpdatePrice() {
-        String total = getString(R.string.button_checkout, transaction.totalPrice);
-        ((Button)findViewById(R.id.checkoutButton)).setText(total);
+        transaction.CalculateTotalPrice();
+        String total = String.format("Total: $%.2f\nCheckout", transaction.totalPrice);
+        checkoutButton.setText(total);
     }
 
     public void PopulateWithItems() {
+        Object[] merchList = merchStockManager.merchDictionary.values().toArray();
+
         LinearLayout lst = findViewById(R.id.merch_list);
-        for (MerchItem item : merchList) {
+        for (Object item : merchList) {
             MerchItemSelector tmp = new MerchItemSelector(getApplicationContext());
-            tmp.Initialize(item, transaction);
+            tmp.Initialize((MerchItem)item, transaction, this, merchStockManager.stockDictionary.get(((MerchItem) item).id));
             lst.addView(tmp);
         }
+    }
+
+    public boolean ValidItemQuantity(int id, int quantity) {
+        if (merchStockManager.stockDictionary.get(id) >= quantity) return true;
+        else return false;
     }
 }

@@ -5,10 +5,19 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class MerchTransaction implements Serializable {
+    public ArrayList<MerchItem> items;
     public ArrayList<MerchTransactionItem> itemList;
     public float totalPrice;
     public boolean priceOverride = false;
     public Date date;
+
+    public MerchTransaction(Object[] items) {
+        this.itemList = new ArrayList<MerchTransactionItem>();
+        this.items = new ArrayList<MerchItem>();
+        for (Object item : items) {
+            this.items.add((MerchItem) item);
+        }
+    }
 
     public void CalculateTotalPrice() {
         float total = 0;
@@ -22,7 +31,6 @@ public class MerchTransaction implements Serializable {
 
         }
         totalPrice = total;
-        //set text to new total
     }
 
     public void OverridePrice(float price) {
@@ -31,15 +39,59 @@ public class MerchTransaction implements Serializable {
     }
 
     public void AddItem(int id) {
+        //increment proper item in itemList
         MerchTransactionItem currItem = null;
         for (MerchTransactionItem item : itemList) {
-            if (item.item.id == id) {
-                currItem = item;
-                break;
+            if (item.GetId() == id) {
+                item.amount++;
+                return;
             }
         }
         if (currItem == null) {
-            //grab item info from inventory
+            MerchItem item = GetMerchItem(id);
+            MerchTransactionItem transactionItem = new MerchTransactionItem();
+            transactionItem.item = item;
+            transactionItem.amount = 1;
+            itemList.add(transactionItem);
         }
+        CalculateTotalPrice();
+    }
+
+    public void SubtractItem(int id) {
+        //decrement proper item in itemList
+        MerchTransactionItem currItem = null;
+        for (MerchTransactionItem item : itemList) {
+            if (item.GetId() == id) {
+                item.amount--;
+                if (item.amount == 0) itemList.remove(item);
+                return;
+            }
+        }
+        CalculateTotalPrice();
+    }
+
+    public MerchItem GetMerchItem(int id) {
+        for (MerchItem item : items) {
+            if (item.id == id) return item;
+        }
+        return null;
+    }
+
+    public float GetMerchTotal(int id) {
+        for (MerchTransactionItem item : itemList) {
+            if (item.GetId() == id) {
+                return item.amount * item.item.price;
+            }
+        }
+        return -1f;
+    }
+
+    public int GetMerchQuantity(int id) {
+        for (MerchTransactionItem item : itemList) {
+            if (item.GetId() == id) {
+                return item.amount;
+            }
+        }
+        return -1;
     }
 }
