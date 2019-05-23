@@ -81,26 +81,28 @@ public class ManageInventory extends AppCompatActivity {
                 break;
             }
             case (EDIT_ITEM_RESULT) : {
-                Bundle dataBundle = data.getExtras();
-                MerchItem merchItem = (MerchItem) dataBundle.getSerializable("merchItem");
-                String set = dataBundle.getString("set");
-                int quantity = dataBundle.getInt("quantity");
+                if (resultCode == Activity.RESULT_OK) {
+                    Bundle dataBundle = data.getExtras();
+                    MerchItem merchItem = (MerchItem) dataBundle.getSerializable("merchItem");
+                    String set = dataBundle.getString("set");
+                    int quantity = dataBundle.getInt("quantity");
 
-                merchStockManager.ChangeItemName(merchItem.id, merchItem.name);
-                merchStockManager.ChangeItemPrice(merchItem.id, merchItem.price);
-                merchStockManager.ChangeItemStock(merchItem.id, quantity);
+                    merchStockManager.ChangeItemName(merchItem.id, merchItem.name);
+                    merchStockManager.ChangeItemPrice(merchItem.id, merchItem.price);
+                    merchStockManager.ChangeItemStock(merchItem.id, quantity);
 
-                SharedPreferences prefs = getSharedPreferences("MERCH_STOCK", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
+                    SharedPreferences prefs = getSharedPreferences("MERCH_STOCK", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
 
-                try {
-                    editor.putString("conStockManager", ObjectSerializer.serialize(merchStockManager));
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    try {
+                        editor.putString("conStockManager", ObjectSerializer.serialize(merchStockManager));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    editor.commit();
+
+                    RefreshMerchList();
                 }
-                editor.commit();
-
-                RefreshMerchList();
             }
         }
     }

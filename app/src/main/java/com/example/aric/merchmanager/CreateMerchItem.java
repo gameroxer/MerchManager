@@ -39,7 +39,7 @@ public class CreateMerchItem extends AppCompatActivity {
             price.setText(String.format("%.2f", merchItem.price));
             quantity.setText(Integer.toString(stock));
         }
-
+        setResult(Activity.RESULT_CANCELED);
     }
 
     public void CreateItemPressed(View v) {
