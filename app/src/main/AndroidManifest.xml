@@ -9,16 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditInventoryItem"></activity>
-        <activity android:name=".ViewSales" />
-        <activity
-            android:name=".EventSelector"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".EventCreator"
-            android:label="@string/activity_event_creator"
-            android:parentActivityName=".EventSelector" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -34,17 +24,36 @@
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".Checkout"
-            android:label="@string/activity_checkout"
-            android:parentActivityName=".MerchSale" />
+            android:name=".ViewSales"
+            android:label="@string/activity_view_sales"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ManageInventory"
             android:label="@string/activity_inventory_manager"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".Analytics"
+            android:label="@string/activity_analytics"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity
+            android:name=".Checkout"
+            android:label="@string/activity_checkout"
+            android:parentActivityName=".MerchSale" />
+        <activity
             android:name=".CreateMerchItem"
             android:label="@string/activity_merch_creator"
             android:parentActivityName=".ManageInventory" />
+        <activity android:name=".PriceOverride" />
+        <activity android:name=".EditInventoryItem" />
+        <activity
+            android:name=".EventSelector"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EventCreator"
+            android:label="@string/activity_event_creator"
+            android:parentActivityName=".EventSelector" />
     </application>
 
 </manifest>

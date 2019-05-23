@@ -22,6 +22,7 @@
         android:id="@+id/overrideButton"
         android:layout_width="0dp"
         android:layout_height="60dp"
+        android:onClick="PriceOverrideButtonPressed"
         android:text="@string/button_override"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/saleButton"

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MerchTransaction implements Serializable {
+public class MerchTransaction implements Serializable, Comparable<MerchTransaction> {
     public ArrayList<MerchItem> items;
     public ArrayList<MerchTransactionItem> itemList;
     public float totalPrice;
@@ -20,6 +20,7 @@ public class MerchTransaction implements Serializable {
     }
 
     public void CalculateTotalPrice() {
+        if (priceOverride) return;
         float total = 0;
         for (MerchTransactionItem item : itemList) {
             if (item.hasPriceOverride) {
@@ -93,5 +94,10 @@ public class MerchTransaction implements Serializable {
             }
         }
         return -1;
+    }
+
+    @Override
+    public int compareTo(MerchTransaction o) {
+        return this.date.compareTo(o.date);
     }
 }

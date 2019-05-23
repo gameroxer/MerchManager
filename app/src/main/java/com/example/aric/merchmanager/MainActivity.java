@@ -9,6 +9,7 @@ import android.view.View;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,7 +43,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ViewSalesButtonPressed(View v) {
+        Collections.sort(transactionList, Collections.<MerchTransaction>reverseOrder());
 
+        Intent intent = new Intent(this, ViewSales.class);
+        intent.putExtra("transactionList", transactionList);
+        startActivity(intent);
+    }
+
+    public void AnalyticsButtonPressed(View v) {
+        Intent intent = new Intent(this, Analytics.class);
+        intent.putExtra("transactionList", transactionList);
+        startActivity(intent);
     }
 
     private void RetrieveStockAndTransactions() {

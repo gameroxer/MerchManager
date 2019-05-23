@@ -1,8 +1,10 @@
 package com.example.aric.merchmanager;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Checkout extends AppCompatActivity {
+    public static final int PRICE_OVERRIDE_RESULT = 1;
+
     private MerchTransaction transaction;
     private MerchStockManager stockManager;
     private ArrayList<MerchItem> merchList;
@@ -41,6 +45,27 @@ public class Checkout extends AppCompatActivity {
         makeSaleButton.setText(String.format("Total: $%.2f\nMake Sale!", transaction.totalPrice));
 
         PopulateWithItems();
+    }
+
+    public void PriceOverrideButtonPressed(View v) {
+        Intent intent = new Intent(this, PriceOverride.class);
+        intent.putExtra("merchTransaction", transaction);
+        startActivityForResult(intent, PRICE_OVERRIDE_RESULT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case (PRICE_OVERRIDE_RESULT): {
+                if (resultCode == Activity.RESULT_OK) {
+                    float newPrice = data.getFloatExtra("newPrice", 0);
+                    transaction.OverridePrice(newPrice);
+                    makeSaleButton.setText(String.format("OVERRIDE Total: $%.2f\nMake Sale!", transaction.totalPrice));
+                }
+                break;
+            }
+        }
     }
 
     public void PopulateWithItems() {
