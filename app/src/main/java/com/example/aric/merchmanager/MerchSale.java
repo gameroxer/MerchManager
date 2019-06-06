@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,10 +26,51 @@ public class MerchSale extends AppCompatActivity {
 
     public Button checkoutButton;
 
+    Button buttonsButton;
+    Button charmsButton;
+    Button omanjuuButton;
+    Button postcardsButton;
+    Button printsButton;
+    Button stationeryButton;
+    Button stickersButton;
+    Button otherButton;
+
+    ArrayList<Button> typeButtons;
+
+    String filter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_merch_sale);
+
+        buttonsButton = findViewById(R.id.buttonsButton);
+        charmsButton = findViewById(R.id.charmsButton);
+        omanjuuButton = findViewById(R.id.omanjuuButton);
+        postcardsButton = findViewById(R.id.postcardsButton);
+        printsButton = findViewById(R.id.printsButton);
+        stationeryButton = findViewById(R.id.stationeryButton);
+        stickersButton = findViewById(R.id.stickersButton);
+        otherButton = findViewById(R.id.otherButton);
+
+        typeButtons = new ArrayList<>();
+        typeButtons.add(buttonsButton);
+        typeButtons.add(charmsButton);
+        typeButtons.add(omanjuuButton);
+        typeButtons.add(postcardsButton);
+        typeButtons.add(printsButton);
+        typeButtons.add(stationeryButton);
+        typeButtons.add(stickersButton);
+        typeButtons.add(otherButton);
+
+        for (Button btn : typeButtons) {
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TypeButtonPressed(v);
+                }
+            });
+        }
 
         Intent intent = getIntent();
 
@@ -70,6 +112,22 @@ public class MerchSale extends AppCompatActivity {
         startActivityForResult(checkoutIntent, 1);
     }
 
+    public void TypeButtonPressed(View v) {
+        Button btn = (Button)v;
+        filter = btn.getText().toString().toLowerCase();
+
+        HighlightTypeButton(btn);
+        RefreshMerchList();
+    }
+
+    public void HighlightTypeButton(Button btn) {
+        if (btn == null) return;
+        for (Button button : typeButtons) {
+            button.setBackgroundColor(getResources().getColor(R.color.button_color));
+        }
+        btn.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+    }
+
     public void UpdatePrice() {
         transaction.CalculateTotalPrice();
         String total = String.format("Total: $%.2f\nCheckout", transaction.totalPrice);
@@ -77,14 +135,37 @@ public class MerchSale extends AppCompatActivity {
     }
 
     public void PopulateWithItems() {
-        Object[] merchList = merchStockManager.merchDictionary.values().toArray();
+        ArrayList<MerchItem> merchList = FilterList(merchStockManager.merchDictionary.values().toArray(), filter);
 
         LinearLayout lst = findViewById(R.id.merch_list);
-        for (Object item : merchList) {
+        for (MerchItem item : merchList) {
             MerchItemSelector tmp = new MerchItemSelector(getApplicationContext());
-            tmp.Initialize((MerchItem)item, transaction, this, merchStockManager.stockDictionary.get(((MerchItem) item).id));
+            tmp.Initialize(item, transaction, this, merchStockManager.stockDictionary.get(item.id));
             lst.addView(tmp);
         }
+    }
+
+    public void RefreshMerchList() {
+        LinearLayout lst = findViewById(R.id.merch_list);
+        lst.removeAllViews();
+        PopulateWithItems();
+    }
+
+    public ArrayList<MerchItem> FilterList(Object[] merchList, String filter) {
+        ArrayList<MerchItem> retArray = new ArrayList<>();
+
+        if (filter == null) {
+            for (Object item : merchList) {
+                retArray.add((MerchItem) item);
+            }
+            return retArray;
+        }
+
+        for (Object item : merchList) {
+            if (((MerchItem)item).type.equals(filter)) retArray.add((MerchItem)item);
+        }
+
+        return retArray;
     }
 
     public boolean ValidItemQuantity(int id, int quantity) {

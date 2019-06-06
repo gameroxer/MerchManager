@@ -48,8 +48,8 @@ public class InventoryItemSelector extends ConstraintLayout {
         TextView name = findViewById(R.id.itemName);
         TextView stockTxt = findViewById(R.id.itemStock);
         TextView price = findViewById(R.id.itemPrice);
-        name.setText(myItem.name);
+        name.setText(myItem.toString());
         stockTxt.setText(String.format("Number in stock: %d", stock));
-        price.setText(String.format("Price: %.2f", myItem.price));
+        price.setText(String.format("$%.2f", myItem.price));
     }
 }

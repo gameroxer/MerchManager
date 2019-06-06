@@ -24,6 +24,14 @@
     <string name="button_make_sale">Make Sale!</string>
     <string name="button_create_item">Create Item!</string>
     <string name="button_change_price">Change Price!</string>
+    <string name="button_prints">Prints</string>
+    <string name="button_postcards">Postcards</string>
+    <string name="button_charms">Charms</string>
+    <string name="button_buttons">Buttons</string>
+    <string name="button_omanjuu">Omanjuu</string>
+    <string name="button_stationery">Stationery</string>
+    <string name="button_stickers">Stickers</string>
+    <string name="button_other">Other</string>
 
     <string name="label_item_stock">Number in stock: %d</string>
     <string name="label_total_earned">Total Earned: </string>

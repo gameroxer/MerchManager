@@ -112,4 +112,97 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <LinearLayout
+        android:id="@+id/typeButtons1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/quantityText">
+
+        <Button
+            android:id="@+id/buttonsButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:text="@string/button_buttons" />
+
+        <Button
+            android:id="@+id/charmsButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:text="@string/button_charms" />
+
+        <Button
+            android:id="@+id/omanjuuButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:text="@string/button_omanjuu" />
+
+        <Button
+            android:id="@+id/postcardsButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:text="@string/button_postcards" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/typeButtons2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/typeButtons1">
+
+        <Button
+            android:id="@+id/printsButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:text="@string/button_prints" />
+
+        <Button
+            android:id="@+id/stationeryButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:text="@string/button_stationery" />
+
+        <Button
+            android:id="@+id/stickersButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:text="@string/button_stickers" />
+
+        <Button
+            android:id="@+id/otherButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:text="@string/button_other" />
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

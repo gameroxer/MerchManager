@@ -87,8 +87,8 @@ public class MerchItemSelector extends ConstraintLayout {
         quantity = findViewById(R.id.merch_quantity);
         this.stock = findViewById(R.id.merch_stock);
 
-        name.setText(myItem.name);
-        price.setText(String.format("%.2f", myItem.price));
+        name.setText(myItem.toString());
+        price.setText(String.format("$%.2f", myItem.price));
         this.stock.setText(String.format("Stock: %d", stock));
         quantity.setTag(myItem.id + "Quantity");
     }

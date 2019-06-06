@@ -22,11 +22,13 @@ public class MerchStockManager implements Serializable {
         else stockDictionary.put(itemId, amount);
     }
 
-    public void CreateItem(int itemId, String name, float price) {
+    public void CreateItem(int itemId, String name, float price, String type, String set) {
         MerchItem item = new MerchItem();
         item.id = itemId;
         item.name = name;
         item.price = price;
+        item.type = type;
+        item.set = set;
         merchDictionary.put(itemId, item);
     }
 
@@ -57,6 +59,18 @@ public class MerchStockManager implements Serializable {
     public void ChangeItemPrice(int id, float price) {
         MerchItem item = merchDictionary.get(id);
         item.price = price;
+        merchDictionary.remove(id);
+        merchDictionary.put(id, item);
+    }
+    public void ChangeItemSet(int id, String set) {
+        MerchItem item = merchDictionary.get(id);
+        item.set = set;
+        merchDictionary.remove(id);
+        merchDictionary.put(id, item);
+    }
+    public void ChangeItemType(int id, String type) {
+        MerchItem item = merchDictionary.get(id);
+        item.type = type;
         merchDictionary.remove(id);
         merchDictionary.put(id, item);
     }
