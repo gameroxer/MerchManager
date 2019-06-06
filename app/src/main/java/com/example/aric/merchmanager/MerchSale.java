@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -136,6 +137,7 @@ public class MerchSale extends AppCompatActivity {
 
     public void PopulateWithItems() {
         ArrayList<MerchItem> merchList = FilterList(merchStockManager.merchDictionary.values().toArray(), filter);
+        Collections.sort(merchList);
 
         LinearLayout lst = findViewById(R.id.merch_list);
         for (MerchItem item : merchList) {
