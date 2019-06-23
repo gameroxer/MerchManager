@@ -7,12 +7,29 @@ import java.util.HashMap;
 public class MerchStockManager implements Serializable {
     public HashMap<Integer, Integer> stockDictionary;
     public HashMap<Integer, MerchItem> merchDictionary;
-    public ArrayList<MerchSet> setDiscounts;
+    public HashMap<Integer, MerchSet> setDiscounts;
 
     public MerchStockManager() {
         stockDictionary = new HashMap<Integer, Integer>();
         merchDictionary = new HashMap<Integer, MerchItem>();
-        setDiscounts = new ArrayList<MerchSet>();
+        setDiscounts = new HashMap<Integer, MerchSet>();
+    }
+
+    public MerchSet GetSet(String name) {
+        for (MerchSet set : setDiscounts.values()) {
+            if (name == set.name) return set;
+        }
+        return null;
+    }
+
+    public void AddSet(MerchSet set) {
+        setDiscounts.put(set.id, set);
+    }
+
+    public void EditSet(MerchSet set) {
+        Integer id = set.id;
+        setDiscounts.remove(id);
+        setDiscounts.put(id, set);
     }
 
     public void AddStock(int itemId, Integer amount) {
@@ -45,6 +62,14 @@ public class MerchStockManager implements Serializable {
     public int GenerateNewId() {
         int retVal = merchDictionary.size();
         while (merchDictionary.containsKey(retVal)) {
+            retVal++;
+        }
+        return retVal;
+    }
+
+    public int GenerateSetId() {
+        int retVal = setDiscounts.size();
+        while (setDiscounts.containsKey(retVal)) {
             retVal++;
         }
         return retVal;

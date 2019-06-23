@@ -42,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void ManageSetsButtonPressed(View v) {
+        Intent intent = new Intent(this, SetManager.class);
+        intent.putExtra("stockManager", conStockManager);
+        startActivity(intent);
+    }
+
     public void ViewSalesButtonPressed(View v) {
         Collections.sort(transactionList, Collections.<MerchTransaction>reverseOrder());
 

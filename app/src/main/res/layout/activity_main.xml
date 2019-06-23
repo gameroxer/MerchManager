@@ -39,6 +39,21 @@
         app:layout_constraintTop_toBottomOf="@+id/saleButton" />
 
     <Button
+        android:id="@+id/setsButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:onClick="ManageSetsButtonPressed"
+        android:text="@string/button_manage_sets"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inventoryButton" />
+
+    <Button
         android:id="@+id/viewSalesButton"
         android:layout_width="0dp"
         android:layout_height="50dp"
@@ -53,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inventoryButton" />
+        app:layout_constraintTop_toBottomOf="@+id/setsButton" />
 
     <Button
         android:id="@+id/analyticsButton"
@@ -68,7 +83,8 @@
         android:text="@string/button_analytics"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewSalesButton" />
+
 </android.support.constraint.ConstraintLayout>

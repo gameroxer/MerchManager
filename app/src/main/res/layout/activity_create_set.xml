@@ -4,22 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateMerchItem">
-
-    <Button
-        android:id="@+id/createItem"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/box_size"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="CreateItemPressed"
-        android:text="@string/button_create_item"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    tools:context=".CreateSet">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/nameText"
@@ -43,9 +28,8 @@
             android:textSize="24dp"
             android:textStyle="bold" />
     </android.support.design.widget.TextInputLayout>
-
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/priceText"
+        android:id="@+id/discountText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -58,67 +42,20 @@
         app:layout_constraintTop_toBottomOf="@+id/nameText">
 
         <EditText
-            android:id="@+id/price"
+            android:id="@+id/discount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/hint_enter_price"
+            android:hint="@string/hint_enter_discount"
             android:inputType="numberDecimal" />
     </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/setText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/priceText">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/set"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_enter_set"
-            android:textColor="@color/text_color_primary" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/quantityText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setText">
-
-        <EditText
-            android:id="@+id/quantity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/hint_enter_quantity"
-            android:inputType="numberDecimal" />
-
-    </android.support.design.widget.TextInputLayout>
-
     <LinearLayout
         android:id="@+id/typeButtons1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/quantityText">
+        app:layout_constraintTop_toBottomOf="@+id/discountText">
 
         <Button
             android:id="@+id/buttonsButton"
@@ -204,17 +141,18 @@
             android:text="@string/button_other" />
     </LinearLayout>
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="395dp"
-        android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/createSet"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/box_size"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="CreateSetPressed"
+        android:text="@string/button_create_set"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/typeButtons2" />
-
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
