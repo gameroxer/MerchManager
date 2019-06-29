@@ -17,7 +17,7 @@ public class MerchStockManager implements Serializable {
 
     public MerchSet GetSet(String name) {
         for (MerchSet set : setDiscounts.values()) {
-            if (name == set.name) return set;
+            if (name.equals(set.name)) return set;
         }
         return null;
     }
@@ -47,6 +47,9 @@ public class MerchStockManager implements Serializable {
         item.type = type;
         item.set = set;
         merchDictionary.put(itemId, item);
+
+        MerchSet merchSet = GetSet(set);
+        merchSet.itemsInSet.add(item);
     }
 
     public void ResetStock(int itemId) {
@@ -89,7 +92,14 @@ public class MerchStockManager implements Serializable {
     }
     public void ChangeItemSet(int id, String set) {
         MerchItem item = merchDictionary.get(id);
+        String oldSet = item.set;
         item.set = set;
+
+        if (oldSet != set) {
+            GetSet(oldSet).itemsInSet.remove(item);
+            GetSet(set).itemsInSet.add(item);
+        }
+
         merchDictionary.remove(id);
         merchDictionary.put(id, item);
     }

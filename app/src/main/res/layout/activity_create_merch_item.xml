@@ -67,28 +67,6 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/setText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/priceText">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/set"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_enter_set"
-            android:textColor="@color/text_color_primary" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
         android:id="@+id/quantityText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -99,7 +77,7 @@
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setText">
+        app:layout_constraintTop_toBottomOf="@+id/priceText">
 
         <EditText
             android:id="@+id/quantity"
@@ -116,9 +94,9 @@
         android:id="@+id/typeButtons1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/quantityText">
+        app:layout_constraintTop_toBottomOf="@+id/setDropdown">
 
         <Button
             android:id="@+id/buttonsButton"
@@ -205,9 +183,9 @@
     </LinearLayout>
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/setDropdown"
         android:layout_width="395dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -215,6 +193,6 @@
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/typeButtons2" />
+        app:layout_constraintTop_toBottomOf="@+id/quantityText" />
 
 </android.support.constraint.ConstraintLayout>

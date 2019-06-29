@@ -34,16 +34,17 @@ public class SetManager extends AppCompatActivity {
             merchStockManager = (MerchStockManager)intent.getSerializableExtra("stockManager");
         }
         if (merchStockManager == null) merchStockManager = new MerchStockManager();
+
+        PopulateWithSets();
     }
 
     public void PopulateWithSets() {
         LinearLayout lst = findViewById(R.id.set_list);
         HashMap<Integer, MerchSet> setMap = SortHashMap(merchStockManager.setDiscounts);
         for (Map.Entry<Integer, MerchSet> entry : setMap.entrySet()) {
-            //Make new thing for SetSelector
-//            InventoryItemSelector tmp = new InventoryItemSelector(getApplicationContext());
-//            tmp.Initialize(entry.getValue(), merchStockManager.stockDictionary.get(entry.getKey()), this);
-//            lst.addView(tmp);
+            SetSelector tmp = new SetSelector(getApplicationContext());
+            tmp.Initialize(entry.getValue(), this);
+            lst.addView(tmp);
         }
     }
 

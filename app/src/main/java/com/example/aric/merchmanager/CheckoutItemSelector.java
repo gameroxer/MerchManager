@@ -41,7 +41,7 @@ public class CheckoutItemSelector extends ConstraintLayout {
         TextView quantity = findViewById(R.id.merch_stock);
         price = findViewById(R.id.total_price);
 
-        name.setText(myItem.name);
+        name.setText(myItem.toString());
         quantity.setText(String.format("Quantity: %d", parentTransaction.GetMerchQuantity(myItem.id)));
         price.setText(String.format("$%.2f", parentTransaction.GetMerchTotal(myItem.id)));
     }

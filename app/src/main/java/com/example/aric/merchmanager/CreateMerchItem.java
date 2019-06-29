@@ -7,10 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CreateMerchItem extends AppCompatActivity {
@@ -22,9 +27,12 @@ public class CreateMerchItem extends AppCompatActivity {
     public String type;
 
     EditText name;
-    EditText set;
     EditText price;
     EditText quantity;
+
+    Spinner setDropdown;
+
+    String merchSet;
 
     Button buttonsButton;
     Button charmsButton;
@@ -43,9 +51,11 @@ public class CreateMerchItem extends AppCompatActivity {
         setContentView(R.layout.activity_create_merch_item);
 
         name = (findViewById(R.id.name));
-        set = (findViewById(R.id.set));
         price = findViewById(R.id.price);
         quantity = findViewById(R.id.quantity);
+
+        setDropdown = findViewById(R.id.setDropdown);
+        //setDropdown = new Spinner(this);
 
         buttonsButton = findViewById(R.id.buttonsButton);
         charmsButton = findViewById(R.id.charmsButton);
@@ -82,12 +92,40 @@ public class CreateMerchItem extends AppCompatActivity {
             stock = intent.getIntExtra("stock", 0);
             name.setText(merchItem.name);
             price.setText(String.format("%.2f", merchItem.price));
-            set.setText(merchItem.set);
             quantity.setText(Integer.toString(stock));
             type = merchItem.type;
 
             HighlightTypeButton(GetTypeButton(merchItem.type));
         }
+        ArrayList<String> sets;
+        if (intent.hasExtra("sets")) {
+            sets = (ArrayList<String>)intent.getSerializableExtra("sets");
+            sets.add("None");
+        }
+        else {
+            sets = new ArrayList<>();
+        }
+
+        //populate spinner with set names
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_layout, sets);
+        adapter.setDropDownViewResource(R.layout.spinner_layout);
+        setDropdown.setAdapter(adapter);
+
+        setDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String text = parent.getItemAtPosition(position).toString();
+                if (text != "None") merchSet = text;
+                else merchSet = "";
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        setDropdown.setSelection(sets.size() - 1);
+
         setResult(Activity.RESULT_CANCELED);
     }
 
@@ -129,18 +167,17 @@ public class CreateMerchItem extends AppCompatActivity {
 
     private void CompleteMerchEdit(View v) {
         String name = this.name.getText().toString();
-        String set = this.set.getText().toString();
         float price = Float.parseFloat(this.price.getText().toString());
         int quantity = Integer.parseInt(this.quantity.getText().toString());
 
         merchItem.name = name;
         merchItem.price = price;
-        merchItem.set = set;
+        merchItem.set = merchSet;
         merchItem.type = type;
 
         Intent merchDetails = new Intent();
         merchDetails.putExtra("merchItem", merchItem);
-        merchDetails.putExtra("set", set);
+        merchDetails.putExtra("set", merchSet);
         merchDetails.putExtra("quantity", quantity);
         merchDetails.putExtra("type", type);
 
@@ -151,13 +188,12 @@ public class CreateMerchItem extends AppCompatActivity {
 
     private void CompleteMerchCreation(View v) {
         String name = this.name.getText().toString();
-        String set = this.set.getText().toString();
         float price = Float.parseFloat(this.price.getText().toString());
         int quantity = Integer.parseInt(this.quantity.getText().toString());
 
         Intent merchDetails = new Intent();
         merchDetails.putExtra("name", name);
-        merchDetails.putExtra("set", set);
+        merchDetails.putExtra("set", merchSet);
         merchDetails.putExtra("price", price);
         merchDetails.putExtra("quantity", quantity);
         merchDetails.putExtra("type", type);

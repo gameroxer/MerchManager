@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -41,6 +43,11 @@ public class ManageInventory extends AppCompatActivity {
 
     public void CreateMerchButtonPressed(View v) {
         Intent intent = new Intent(this, CreateMerchItem.class);
+        ArrayList<String> sets = new ArrayList<>();
+        for (MerchSet set : merchStockManager.setDiscounts.values()) {
+            sets.add(set.name);
+        }
+        intent.putExtra("sets", sets);
         startActivityForResult(intent, CREATE_ITEM_RESULT);
     }
 

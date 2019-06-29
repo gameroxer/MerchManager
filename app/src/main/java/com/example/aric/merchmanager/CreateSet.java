@@ -73,10 +73,15 @@ public class CreateSet extends AppCompatActivity {
             editSet = true;
             merchSet = (MerchSet) (intent.getSerializableExtra("merchSet"));
             name.setText(merchSet.name);
-            discount.setText(String.format("%f", merchSet.discount * 100f));
+            float dc = merchSet.discount * 100f;
+            if (dc%1 != 0) discount.setText(String.format("%.2f", dc));
+            else discount.setText(String.format("%.0f", dc));
             type = merchSet.type;
 
             HighlightTypeButton(GetTypeButton(merchSet.type));
+        }
+        else {
+            discount.setText("20");
         }
         setResult(Activity.RESULT_CANCELED);
     }

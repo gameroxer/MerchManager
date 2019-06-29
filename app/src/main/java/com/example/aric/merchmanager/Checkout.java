@@ -68,6 +68,12 @@ public class Checkout extends AppCompatActivity {
         }
     }
 
+    public void SquareButtonPressed(View v) {
+        transaction.ToggleSquare();
+        if (transaction.usingSquare) makeSaleButton.setText(String.format("SQUARE Total: $%.2f\nMake Sale!", transaction.totalPrice));
+        else makeSaleButton.setText(String.format("Total: $%.2f\nMake Sale!", transaction.totalPrice));
+    }
+
     public void PopulateWithItems() {
         LinearLayout lst = findViewById(R.id.checkoutItemList);
         for (MerchTransactionItem item : transaction.itemList) {

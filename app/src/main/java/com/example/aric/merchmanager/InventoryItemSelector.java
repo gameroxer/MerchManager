@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class InventoryItemSelector extends ConstraintLayout {
 
     MerchItem myItem;
@@ -32,6 +35,11 @@ public class InventoryItemSelector extends ConstraintLayout {
         intent.putExtra("editMerchItem", true);
         intent.putExtra("merchItem", myItem);
         intent.putExtra("stock", parent.merchStockManager.stockDictionary.get(myItem.id));
+        ArrayList<String> sets = new ArrayList<>();
+        for (MerchSet set : parent.merchStockManager.setDiscounts.values()) {
+            sets.add(set.name);
+        }
+        intent.putExtra("sets", sets);
         parent.startActivityForResult(intent, ManageInventory.EDIT_ITEM_RESULT);
     }
 

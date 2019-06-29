@@ -41,6 +41,7 @@
     <string name="label_item_stock">Number in stock: %d</string>
     <string name="label_total_earned">Total Earned: </string>
     <string name="label_most_popular">Most Popular: </string>
+    <string name="label_set_type">Type: </string>
 
     <string name="action_settings">Settings</string>
 

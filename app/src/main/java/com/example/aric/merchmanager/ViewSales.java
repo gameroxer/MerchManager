@@ -3,6 +3,7 @@ package com.example.aric.merchmanager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class ViewSales extends AppCompatActivity {
         if (intent.hasExtra("transactionList")) {
             transactionList = (ArrayList<MerchTransaction>) intent.getSerializableExtra("transactionList");
         }
+        else transactionList = new ArrayList<>();
 
         PopulateWithTransactions();
     }

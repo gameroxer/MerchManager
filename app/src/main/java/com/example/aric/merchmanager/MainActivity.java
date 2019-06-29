@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ViewSalesButtonPressed(View v) {
-        Collections.sort(transactionList, Collections.<MerchTransaction>reverseOrder());
+        if (transactionList != null) Collections.sort(transactionList, Collections.<MerchTransaction>reverseOrder());
 
         Intent intent = new Intent(this, ViewSales.class);
         intent.putExtra("transactionList", transactionList);

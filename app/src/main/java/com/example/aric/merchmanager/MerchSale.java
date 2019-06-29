@@ -79,7 +79,7 @@ public class MerchSale extends AppCompatActivity {
             merchStockManager = (MerchStockManager)intent.getSerializableExtra("stockManager");
         }
 
-        transaction = new MerchTransaction(merchStockManager.merchDictionary.values().toArray());
+        transaction = new MerchTransaction(merchStockManager.merchDictionary.values().toArray(), merchStockManager.setDiscounts.values().toArray());
 
         checkoutButton = findViewById(R.id.checkoutButton);
 
@@ -130,8 +130,8 @@ public class MerchSale extends AppCompatActivity {
     }
 
     public void UpdatePrice() {
-        transaction.CalculateTotalPrice();
-        String total = String.format("Total: $%.2f\nCheckout", transaction.totalPrice);
+        float ttl =  transaction.CalculateTotalPrice();
+        String total = String.format("Total: $%.2f\nCheckout", ttl);
         checkoutButton.setText(total);
     }
 
