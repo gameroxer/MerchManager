@@ -91,11 +91,15 @@ public class MerchStockManager implements Serializable {
         merchDictionary.put(id, item);
     }
     public void ChangeItemSet(int id, String set) {
+        //if (set.equals("") || set.equals(null)) return;
         MerchItem item = merchDictionary.get(id);
         String oldSet = item.set;
         item.set = set;
 
-        if (oldSet != set) {
+        if ((!set.equals(null) || set.equals("")) && !oldSet.equals("")) {
+            GetSet(oldSet).itemsInSet.remove(item);
+        }
+        else if (!oldSet.equals(set)) {
             GetSet(oldSet).itemsInSet.remove(item);
             GetSet(set).itemsInSet.add(item);
         }

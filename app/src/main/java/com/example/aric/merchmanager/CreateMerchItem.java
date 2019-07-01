@@ -32,7 +32,7 @@ public class CreateMerchItem extends AppCompatActivity {
 
     Spinner setDropdown;
 
-    String merchSet;
+    String merchSet = "";
 
     Button buttonsButton;
     Button charmsButton;
@@ -85,6 +85,8 @@ public class CreateMerchItem extends AppCompatActivity {
             });
         }
 
+        quantity.setText("0");
+
         Intent intent = getIntent();
         if (intent.hasExtra("editMerchItem")) {
             editMerchItem = true;
@@ -94,6 +96,7 @@ public class CreateMerchItem extends AppCompatActivity {
             price.setText(String.format("%.2f", merchItem.price));
             quantity.setText(Integer.toString(stock));
             type = merchItem.type;
+            merchSet = merchItem.set;
 
             HighlightTypeButton(GetTypeButton(merchItem.type));
         }
@@ -124,7 +127,20 @@ public class CreateMerchItem extends AppCompatActivity {
 
             }
         });
-        setDropdown.setSelection(sets.size() - 1);
+
+        //if the merchSet has been set already (edit) then set the dropdown item to the right one, else set it to "None"
+        int index = 0;
+        if (merchSet != "") {
+            for (int i = 0; i < setDropdown.getCount(); i++) {
+                if (setDropdown.getItemAtPosition(i).equals(merchSet)) {
+                    index = i;
+                    break;
+                }
+            }
+        }
+        else index = sets.size() - 1;
+
+        setDropdown.setSelection(index);
 
         setResult(Activity.RESULT_CANCELED);
     }
